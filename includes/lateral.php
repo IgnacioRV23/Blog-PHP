@@ -5,13 +5,13 @@
             <h3 class="text-center">Identificate</h3>
             <form action="loging.php" method="POST">
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                    <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="nombre@ejemplo.com">
+                    <label  class="form-label">Email</label>
+                    <input name="email" type="email" class="form-control" placeholder="nombre@ejemplo.com">
                 </div>
 
                 <div>
-                    <label for="inputPassword5" class="form-label">Password</label>
-                    <input name="password" placeholder="password" type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                    <label class="form-label">Password</label>
+                    <input name="password" placeholder="password" type="password" class="form-control">
                 </div>
 
                 <div class="d-grid gap-2 my-3">
@@ -23,29 +23,29 @@
         <!-- Formulario de registro -->
         <div class="card shadow p-3">
             <h3 class="text-center">Registro</h3>
-            <form action="loging.php" method="POST">
+            <form action="registro.php" method="POST">
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Nombre</label>
-                    <input name="nombre" type="text" class="form-control" id="formGroupExampleInput" placeholder="Nombre">
+                    <label class="form-label">Nombre</label>
+                    <input name="nombre" type="text" class="form-control" placeholder="Nombre" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label">Apellidos</label>
-                    <input name="apellidos" type="text" class="form-control" id="formGroupExampleInput" placeholder="Apellidos">
+                    <label class="form-label">Apellidos</label>
+                    <input name="apellidos" type="text" class="form-control" placeholder="Apellidos" required>
                 </div>
 
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Email</label>
-                    <input name="email" type="email" class="form-control" id="exampleFormControlInput1" placeholder="nombre@ejemplo.com">
+                    <label class="form-label">Email</label>
+                    <input name="email" type="email" class="form-control" placeholder="nombre@ejemplo.com" required>
                 </div>
 
                 <div>
-                    <label for="inputPassword5" class="form-label">Password</label>
-                    <input name="password" placeholder="password" type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                    <label class="form-label">Password</label>
+                    <input name="password" placeholder="password" type="password" class="form-control" aria-describedby="passwordHelpBlock" required>
                 </div>
 
                 <div class="d-grid gap-2 my-3">
-                    <input type="submit" value="Registrarse" class="btn btn-outline-primary"/>
+                    <input type="submit" value="Registrarse" name="submit" class="btn btn-outline-primary"/>
                 </div>
             </form>
         </div>

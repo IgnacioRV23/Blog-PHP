@@ -18,3 +18,6 @@ $db = mysqli_connect($server, $username, $password, $database);
 
 //Se asigna el formato de de texto para la base de datos.
 mysqli_query($db, "SET NAMES 'utf8'");
+
+//Posterior a realizar la conexion a la bd se crea una nueva sesion de php.
+session_start();
