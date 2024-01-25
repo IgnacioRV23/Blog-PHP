@@ -44,21 +44,31 @@
 
         <?php
         //Esta llamada de script js debe de estar debajo de la etiqueta donde se declara el app.js para que funcione de manera correcta.
-        if (isset($_SESSION['resultadoRegistro'])) {
+        if (isset($_SESSION['swal'])) {
 
             //Declaracion de varible de resultado de registro de usuario.
-            $resultado = $_SESSION['resultadoRegistro'];
+            $icono = $_SESSION['icono'];
 
-            if ($resultado) {
-                //Se concatena el mensaje obtenido de la variable y se encierra entre comilla simple para enviar el parametro de manera correcta al js.
-                echo "<script>MoostrarSwal(true)</script>";
-            } else {
-                echo "<script>MoostrarSwal(false)</script>";
-            }
+            $titulo = $_SESSION['titulo'];
+
+            $mensaje = $_SESSION['mensaje'];
+
+            //Se concatena el mensaje obtenido de la variable y se encierra entre comilla simple para enviar el parametro de manera correcta al js.
+            echo "<script>MoostrarSwal('$icono', '$titulo', '$mensaje')</script>";
         }
-        
-        //Se vacio el resultado de la variable de sesion.
-        $_SESSION['resultadoRegistro'] = null;
+
+        if (isset($_SESSION['errores'])) {
+            $errores = $_SESSION['errores'];
+
+            echo "<script>console.log(" . json_encode($errores) . ")</script>";
+        }
+
+        //Se destruye especificamente las variables de sesion del swal para que se pueda reutilizar el mensaje de alerta.
+        unset($_SESSION['swal']);
+        unset($_SESSION['icono']);
+        unset($_SESSION['titulo']);
+        unset($_SESSION['mensaje']);
+        unset($_SESSION['errores']);
         ?>
     </body>
 </html>

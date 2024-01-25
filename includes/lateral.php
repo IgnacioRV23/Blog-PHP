@@ -3,7 +3,7 @@
         <!-- Formulario de ingreso -->
         <div class="card shadow p-3 mb-4">
             <h3 class="text-center">Identificate</h3>
-            <form action="loging.php" method="POST">
+            <form action="login.php" method="POST">
                 <div class="mb-3">
                     <label  class="form-label">Email</label>
                     <input name="email" type="email" class="form-control" placeholder="nombre@ejemplo.com">
