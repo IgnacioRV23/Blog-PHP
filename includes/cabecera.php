@@ -1,6 +1,7 @@
 <?php
 //Se importa la conexion a la base de datos en el cabecero de la pagina.
 require_once 'conexion.php';
+require_once 'helper.php';
 
 if (isset($_SESSION['usuario'])) {
     //Se obtiene la informacion del usuario para su sesion.
@@ -28,9 +29,20 @@ if (isset($_SESSION['usuario'])) {
                         <a class="nav-link" aria-current="page" href="#">Inicio</a>
                     </li>
 
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Categoria 1</a>
-                    </li>
+                    <!--Creacion de vista de categorias por medio de bucle while-->
+                    <?php $categorias = ConseguirCategorias($db) ?>
+                    <?php
+                    //Se valida que el array de categorias no este vacio.
+                    if (!empty($categorias)) :
+                        while ($categoria = mysqli_fetch_assoc($categorias)):
+                            ?>
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="categoria.php?id=<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></a>
+                            </li>
+                            <?php
+                        endwhile;
+                    endif;
+                    ?>
 
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="#">Sobre mi</a>
@@ -40,15 +52,15 @@ if (isset($_SESSION['usuario'])) {
                         <a class="nav-link" aria-current="page" href="#">Contacto</a>
                     </li>
                 </ul>
-                
+
                 <?php if (isset($_SESSION['usuario'])) : ?>
                     <div class="alert alert-primary p-1 m-0 me-4" role="alert">
                         <b class=" fs-6">
-                            Bienvenido <?php echo $nombre . ' ' . $apellidos . '.' ?>
+                            Saludos <?php echo $nombre . ' ' . $apellidos . '.' ?>
                         </b>
                     </div>
                 <?php endif; ?>
-                
+
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Buscador..." aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Buscar</button>

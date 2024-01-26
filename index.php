@@ -9,8 +9,6 @@
         <?php
         //Se realiza de la importacion de la cabecera.
         require_once './includes/cabecera.php';
-        
-       
         ?>
 
         <div class="container-fluid row my-4 m-auto justify-content-around px-4">
@@ -18,17 +16,33 @@
             <div class="col-8 card p-4 shadow">
                 <h1 class="mb-4">Entradas</h1>
 
-                <article>
-                    <h2 class="text-primary">Titulo de entrada</h2>
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non porttitor nibh. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
-                    </p>
-                </article>
+                <?php
+                $entradas = ConseguirEntradas($db);
+
+                if (!empty($entradas)) :
+                    while ($entrada = mysqli_fetch_assoc($entradas)):
+                        ?>
+                        <article>
+                            <h2 class = "text-primary"><?= $entrada['titulo'] ?></h2>
+                            
+                            <p class="text-secondary fs-6 my-1">
+                                <?=$entrada['categoria'] .' | ' . $entrada['fecha']?>
+                            </p>
+                            
+                            <p class="">
+                                <!--Se crea un subtring para que solo muestre los primeros 150 caracteres de la descripcion.-->
+                                <?= substr($entrada['descripcion'], 0, 150) . '...' ?>
+                            </p>
+                        </article>
+                        <?php
+                    endwhile;
+                endif;
+                ?>
             </div>
 
             <!-- Se importa la barra lateral de la pagina -->
             <?php
-            //Se realiza la imporacion de la barra lateral.
+//Se realiza la imporacion de la barra lateral.
             require_once './includes/lateral.php';
             ?>
         </div>
@@ -44,7 +58,7 @@
         <script src="app.js"></script>
 
         <?php
-        //Esta llamada de script js debe de estar debajo de la etiqueta donde se declara el app.js para que funcione de manera correcta.
+//Esta llamada de script js debe de estar debajo de la etiqueta donde se declara el app.js para que funcione de manera correcta.
         if (isset($_SESSION['swal'])) {
 
             //Declaracion de varible de resultado de registro de usuario.
@@ -64,7 +78,7 @@
             echo "<script>console.log(" . json_encode($errores) . ")</script>";
         }
 
-        //Se destruye especificamente las variables de sesion del swal para que se pueda reutilizar el mensaje de alerta.
+//Se destruye especificamente las variables de sesion del swal para que se pueda reutilizar el mensaje de alerta.
         unset($_SESSION['swal']);
         unset($_SESSION['icono']);
         unset($_SESSION['titulo']);
