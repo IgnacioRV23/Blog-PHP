@@ -1,17 +1,27 @@
 <div class="col-3">
     <aside>
+        <?php if (isset($_SESSION['usuario'])) : ?>
+            <div class="card shadow p-3 mb-4">
+            <h3 class="text-center my-3">Panel de control</h3>
+                <!-- botones de panel de control -->
+                <a href="" class="btn btn-outline-primary my-3">Crear entradas</a>
+                <a href="" class="btn btn-outline-primary my-3">Mis datos</a>
+                <a href="cerrar.php" class="btn btn-outline-primary my-3">Cerrar sesión</a>
+            </div>  
+        <?php endif; ?>
+
         <!-- Formulario de ingreso -->
         <div class="card shadow p-3 mb-4">
             <h3 class="text-center">Identificate</h3>
             <form action="login.php" method="POST">
                 <div class="mb-3">
                     <label  class="form-label">Email</label>
-                    <input name="email" type="email" class="form-control" placeholder="nombre@ejemplo.com">
+                    <input name="email" type="email" class="form-control" placeholder="nombre@ejemplo.com" required>
                 </div>
 
                 <div>
                     <label class="form-label">Password</label>
-                    <input name="password" placeholder="password" type="password" class="form-control">
+                    <input name="password" placeholder="password" type="password" class="form-control" required>
                 </div>
 
                 <div class="d-grid gap-2 my-3">

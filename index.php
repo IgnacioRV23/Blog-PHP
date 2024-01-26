@@ -9,11 +9,13 @@
         <?php
         //Se realiza de la importacion de la cabecera.
         require_once './includes/cabecera.php';
+        
+       
         ?>
 
         <div class="container-fluid row my-4 m-auto justify-content-around px-4">
             <!-- caja principal -->
-            <div class="col-8 card p-4">
+            <div class="col-8 card p-4 shadow">
                 <h1 class="mb-4">Entradas</h1>
 
                 <article>
@@ -40,7 +42,6 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="app.js"></script>
-
 
         <?php
         //Esta llamada de script js debe de estar debajo de la etiqueta donde se declara el app.js para que funcione de manera correcta.
