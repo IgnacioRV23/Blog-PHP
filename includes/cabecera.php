@@ -25,33 +25,40 @@ if (isset($_SESSION['usuario'])) {
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Inicio</a>
+                    <li class="nav-item me-3">
+                        <a class="nav-link" aria-current="page" href="index.php">Inicio</a>
                     </li>
 
-                    <!--Creacion de vista de categorias por medio de bucle while-->
-                    <?php $categorias = ConseguirCategorias($db) ?>
-                    <?php
-                    //Se valida que el array de categorias no este vacio.
-                    if (!empty($categorias)) :
-                        while ($categoria = mysqli_fetch_assoc($categorias)):
-                            ?>
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page" href="categoria.php?id=<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></a>
-                            </li>
-                            <?php
-                        endwhile;
-                    endif;
-                    ?>
 
-                    <li class="nav-item">
+
+                    <li class="nav-item me-3">
                         <a class="nav-link" aria-current="page" href="#">Sobre mi</a>
                     </li>
 
-                    <li class="nav-item">
+                    <li class="nav-item me-3">
                         <a class="nav-link" aria-current="page" href="#">Contacto</a>
                     </li>
                 </ul>
+
+                <!--Creacion de vista de categorias por medio de bucle while-->
+                <?php $categorias = ConseguirCategorias($db) ?>
+                <?php
+                //Se valida que el array de categorias no este vacio.
+                if (!empty($categorias)) :
+                    ?>
+                    <div class="dropdown me-4">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorías
+                        </button>
+                        <ul class="dropdown-menu">
+                            <?php while ($categoria = mysqli_fetch_assoc($categorias)): ?>   
+                                <li class="nav-item m-2">
+                                    <a class="nav-link" aria-current="page" href="categoria.php?id=<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></a>
+                                </li>
+                            <?php endwhile; ?>
+                        </ul>
+                    </div>
+                <?php endif; ?>
 
                 <?php if (isset($_SESSION['usuario'])) : ?>
                     <div class="alert alert-primary p-1 m-0 me-4" role="alert">

@@ -4,7 +4,7 @@ include_once 'conexion.php';
 
 //Funcion que obtienen todas las categorias del blog de la BD.
 function ConseguirCategorias($conexion) {
-    $sql = "SELECT * FROM categorias ORDER BY id ASC";
+    $sql = "SELECT * FROM categorias ORDER BY nombre ASC";
 
     $categorias = mysqli_query($conexion, $sql);
 

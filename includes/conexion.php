@@ -20,4 +20,7 @@ $db = mysqli_connect($server, $username, $password, $database);
 mysqli_query($db, "SET NAMES 'utf8'");
 
 //Posterior a realizar la conexion a la bd se crea una nueva sesion de php.
-session_start();
+if(!isset($_SESSION))
+{
+    session_start();
+}
