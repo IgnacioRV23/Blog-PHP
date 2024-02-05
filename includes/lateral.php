@@ -4,7 +4,7 @@
             <div class="card shadow p-3 mb-4">
                 <h3 class="text-center my-3">Panel de control</h3>
                 <!-- botones de panel de control -->
-                <a href="" class="btn btn-outline-primary my-3">Crear entradas</a>
+                <a href="crear-entradas.php" class="btn btn-outline-primary my-3">Crear entradas</a>
                 <a href="crearCategoria.php" class="btn btn-outline-primary my-3">Crear categoría</a>
                 <a href="" class="btn btn-outline-primary my-3">Mis datos</a>
                 <a href="cerrar.php" class="btn btn-outline-primary my-3">Cerrar sesión</a>

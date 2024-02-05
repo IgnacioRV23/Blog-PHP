@@ -1,6 +1,6 @@
 <?php
-include_once './includes/cabecera.php';
 include_once './includes/redireccionar.php';
+include_once './includes/cabecera.php';
 ?>
 
 <html>
@@ -13,12 +13,38 @@ include_once './includes/redireccionar.php';
         <div class="container-fluid row my-4 m-auto justify-content-around">
             <div class="col-8 card p-4 shadow cotainer-categorias">
 
-                <form action="guardar-categoria.php" method="POST" class="w-75 m-auto">
+                <form action="guardar-entrada.php" method="POST" class="w-75 m-auto">
                     <h1 class="mb-4">Crear entradas</h1>
 
                     <div class="mb-4">
-                        <label  class="form-label">Nombre de categoría</label>
-                        <input name="nombre" type="text" class="form-control" placeholder="Categoría" required>
+                        <label  class="form-label">Titulo</label>
+                        <input name="titulo" type="text" class="form-control" placeholder="Titulo" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label  class="form-label">Descripción</label>
+                        <input name="descripcion" type="text" class="form-control" placeholder="Descripción" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label  class="form-label">Categoría</label>
+                        <select name="categoria" class="form-select" required>
+                            <option value="">Categoría</option>
+
+                            <?php
+                            //Se obtiene la lista de categorias y se valida que no este vacia.
+                            $categorias = ConseguirCategorias($db);
+
+                            if (!empty($categorias)) :
+                                while ($categoria = mysqli_fetch_assoc($categorias)):
+                                    ?>
+                                    <option value="<?= $categoria['id'] ?>"><?= $categoria['nombre'] ?></option>
+                                    <?php
+                                endwhile;
+                            endif;
+                            ?>
+
+                        </select>
                     </div>
 
                     <div class="d-grid gap-2 my-4">
@@ -73,4 +99,3 @@ include_once './includes/redireccionar.php';
         ?>
     </body>
 </html>
-

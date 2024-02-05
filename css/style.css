@@ -13,7 +13,7 @@ html {
 }
 
 .cotainer-categorias {
-    
+    min-height: 50vh;
 }
 
 footer {
