@@ -40,6 +40,14 @@ if (isset($_SESSION['usuario'])) {
                     </li>
                 </ul>
 
+                <?php if (isset($_SESSION['usuario'])) : ?>
+                    <div class="alert alert-primary p-1 m-0 me-4" role="alert">
+                        <b class=" fs-6">
+                            Saludos <?php echo $nombre . ' ' . $apellidos . '.' ?>
+                        </b>
+                    </div>
+                <?php endif; ?>
+
                 <!--Creacion de vista de categorias por medio de bucle while-->
                 <?php $categorias = ConseguirCategorias($db) ?>
                 <?php
@@ -59,19 +67,6 @@ if (isset($_SESSION['usuario'])) {
                         </ul>
                     </div>
                 <?php endif; ?>
-
-                <?php if (isset($_SESSION['usuario'])) : ?>
-                    <div class="alert alert-primary p-1 m-0 me-4" role="alert">
-                        <b class=" fs-6">
-                            Saludos <?php echo $nombre . ' ' . $apellidos . '.' ?>
-                        </b>
-                    </div>
-                <?php endif; ?>
-
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscador..." aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Buscar</button>
-                </form>
             </div>
         </div>
     </nav>

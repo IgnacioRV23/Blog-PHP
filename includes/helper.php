@@ -20,10 +20,10 @@ function ConseguirCategorias($conexion) {
 }
 
 function ConseguirEntradas($conexion) {
-    $sql = "SELECT ent.titulo, ent.descripcion, ent.fecha, cat.nombre AS categoria "
+    $sql = "SELECT ent.id, ent.titulo, ent.descripcion, ent.fecha, cat.nombre AS categoria "
             . "FROM entradas AS ent "
             . "INNER JOIN categorias AS cat ON ent.categoria_id = cat.id "
-            . "ORDER BY ent.id DESC LIMIT 6;";
+            . "ORDER BY ent.id DESC;";
             
 
     $entradas = mysqli_query($conexion, $sql);
@@ -35,4 +35,22 @@ function ConseguirEntradas($conexion) {
     }
 
     return $entradas;
+}
+
+function ConseguirEntrada($conexion, $id) {
+    $sql = "SELECT ent.id, ent.titulo, ent.descripcion, ent.fecha, cat.nombre AS categoria "
+            . "FROM entradas AS ent "
+            . "INNER JOIN categorias AS cat ON ent.categoria_id = cat.id "
+            . "WHERE ent.id = $id";
+            
+
+    $entrada = mysqli_query($conexion, $sql);
+
+    $result = array();
+
+    if ($entrada && mysqli_num_rows($entrada) >= 1) {
+        $result = $entrada;
+    }
+
+    return $entrada;
 }

@@ -9,6 +9,7 @@
         <?php
         //Se realiza de la importacion de la cabecera.
         require_once './includes/cabecera.php';
+        include_once './includes/redireccionar.php';
         ?>
 
         <div class="container-fluid row my-4 m-auto justify-content-around px-4">
@@ -17,21 +18,25 @@
                 <h1 class="mb-4">Entradas</h1>
 
                 <?php
-                $entradas = ConseguirEntradas($db);
+                if (isset($_GET)) {
+                    $id = $_GET['id'];
+                }
 
-                if (!empty($entradas)) :
-                    while ($entrada = mysqli_fetch_assoc($entradas)):
+                $entrada = ConseguirEntrada($db, $id);
+
+                if (!empty($entrada)) :
+                    while ($ent = mysqli_fetch_assoc($entrada)):
                         ?>
                         <article>
-                            <a class="text-primary fs-2" href="entrada.php?id=<?=$entrada['id']?>"><?= $entrada['titulo'] ?></a> 
+                            <h2 class="text-primary fs-2"><?= $ent['titulo'] ?></h2> 
 
                             <p class="text-secondary fs-6 my-1">
-                                <?= $entrada['categoria'] . ' | ' . $entrada['fecha'] ?>
+                                <?= $ent['categoria'] . ' | ' . $ent['fecha'] ?>
                             </p>
 
                             <p class="">
                                 <!--Se crea un subtring para que solo muestre los primeros 150 caracteres de la descripcion.-->
-                                <?= substr($entrada['descripcion'], 0, 150) . '...' ?>
+                                <?= $ent['descripcion'] ?>
                             </p>
                         </article>
                         <?php
